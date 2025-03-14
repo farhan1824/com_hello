@@ -64,11 +64,11 @@ class HelloModelHello extends FormModel
     public function getItem()
     {
         $input = Factory::getApplication()->input; // Corrected input retrieval
-        // $pk = $input->get("id", array(), "array");
-        $pk = $this->getState($this->context . '.id');
-        // if (is_array($pk)) {
-        //     $pk = (int) $pk[0];
-        // }
+        $pk = $input->get("id", array(), "array");
+        // $pk = $this->getState($this->context . '.id');
+        if (is_array($pk)) {
+            $pk = (int) $pk[0];
+        }
         if ($pk == 0) {
             return false;
         }
@@ -81,9 +81,9 @@ class HelloModelHello extends FormModel
         $db->setQuery($query);
         try {
             $result = $db->loadObject(); // Corrected typo
-            echo '<pre>Item: ';
-        var_dump($result);
-        echo '</pre>';
+        //     echo '<pre>Item: ';
+        // var_dump($result);
+        // echo '</pre>';
         } catch (Exception $e) {
             Factory::getApplication()->enqueueMessage($e->getMessage(), "error");
             return false;

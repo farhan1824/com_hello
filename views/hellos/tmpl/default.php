@@ -15,9 +15,12 @@ $wa=Factory::getApplication()->getDocument()->getWebAssetManager();
 $wa->registerAndUseScript("com_hello.js",Uri::root()."administrator\components\com_hello\media\js\script.js");
 ?>
 
-
-
-<form action="<?php echo Route::_('index.php?option=com_hello&view=hello'); ?>"
+<div class="container-fluid d-flex">
+    <div>
+        <?php echo $this->sidebar; ?>
+    </div>
+    <div class="col-md-10">
+    <form action="<?php echo Route::_('index.php?option=com_hello&view=hello'); ?>"
       name="adminForm" id="adminForm" method="post" class="form-validate form-horizontal">
 
     <div id="j-main-container">
@@ -97,4 +100,9 @@ $wa->registerAndUseScript("com_hello.js",Uri::root()."administrator\components\c
         </div>
     </div>
 </form>
+    </div>
+</div>
+
+
+
 <img src="<?php echo JUri::root() . 'administrator/components/com_hello/media/img/download (18).jpeg'; ?>" alt="" srcset="" height="120px">

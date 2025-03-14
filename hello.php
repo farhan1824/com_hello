@@ -1,5 +1,5 @@
 <?php
-// controller er shate add kore dei
+// controller er shate add kore dei 
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
@@ -24,6 +24,14 @@ if (file_exists($controllerPath)) {
 if (!class_exists($controllerClass)) {
     $controllerClass = 'HelloController';
     require_once __DIR__ . '/controllers/hello_controller.php';
+}
+
+$helperPath=__DIR__ . '/helper/helper.php';
+if(file_exists($helperPath)){
+    require_once $helperPath;
+}
+else{
+    throw new RuntimeException("Helper Not Found".$helperPath);
 }
 
 $controller = new $controllerClass();

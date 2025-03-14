@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<access component="com_hello">
+<section name="com_hello">
+<action name="core.admin" title="Admin" description="Admin Component"/>
+<action name="core.manage" title="Manage" description="Admin Manager Component"/>
+<action name="core.delete" title="Delete" description="Admin Delte Component"/>
+<action name="core.edit" title="Edit" description="Admin Edit Component"/>
+<action name="core.edit.state" title="Edit State" description="Admin Edit State Component"/>
+<action name="core.edit.own" title="Edit Own" description="Admin Edit Own Component"/>
+</section>
+
+</access>

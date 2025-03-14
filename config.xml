@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+<fieldset name="setting"
+label="Settings of hello">
+<field
+name="date_format"
+type="text"
+label="Date Formate Lebel"
+description="Date Formate is being described"
+/>
+</fieldset>
+<fieldset name="permissions"
+label="Permission Label"
+description="permission description"
+>
+<field
+name="rules"
+type="rules"
+label="Rules label"
+filter="rules"
+component="com_hello"
+section="component"
+>
+<action name="core.admin" title="Admin" description="Admin Component"/>
+<action name="core.manage" title="Manage" description="Admin Manager Component"/>
+<action name="core.delete" title="Delete" description="Admin Delte Component"/>
+<action name="core.edit" title="Edit" description="Admin Edit Component"/>
+<action name="core.edit.state" title="Edit State" description="Admin Edit State Component"/>
+<action name="core.edit.own" title="Edit Own" description="Admin Edit Own Component"/>
+</field>
+</fieldset>
+</config>
+
+
+
+<!-- <?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <fieldset name="setting" label="Settings of Hello">
+        <field
+            name="date_format"
+            type="text"
+            label="Date Format Label"
+            description="Date Format is being described"
+        />
+    </fieldset>
+
+    <fieldset name="permissions" label="Permission Label" description="Permission description">
+        <field
+            name="rules"
+            type="rules"
+            label="Rules Label"
+            filter="rules"
+            component="com_hello"
+            section="component"
+        >
+            <action name="core.admin" title="Admin" description="Admin Component"/>
+            <action name="core.manage" title="Manage" description="Admin Manager Component"/>
+            <action name="core.delete" title="Delete" description="Admin Delete Component"/>
+            <action name="core.edit" title="Edit" description="Admin Edit Component"/>
+            <action name="core.edit.state" title="Edit State" description="Admin Edit State Component"/>
+            <action name="core.edit.own" title="Edit Own" description="Admin Edit Own Component"/>
+        </field>
+    </fieldset>
+</config> -->
