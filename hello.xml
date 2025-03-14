@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="component" version="5.0.0" method="upgrade">
+    <name>com_hello</name>
+    <author>something</author>
+    <creationDate>2024-06-26</creationDate>
+    <copyright>Your Company</copyright>
+    <license>GPL</license>
+    <version>1.0.0</version>
+    <description>Hello Component for Joomla 5</description>
+    <files>
+        <folder>controllers</folder>
+        <folder>models</folder>
+        <folder>views</folder>
+        <filename>hello.php</filename>
+        <!-- <filename>index.html</filename> -->
+    </files>
+    <administration>
+        <menu>Hello Component</menu>
+    </administration>
+</extension>

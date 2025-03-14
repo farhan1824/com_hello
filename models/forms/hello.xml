@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<form>
+<fieldset name="hello_form" label="Details">
+    <!-- Select Field for Name -->
+    <field 
+        name="id" 
+        type="hidden" >
+    </field>
+    <field 
+        name="name" 
+        type="name" 
+        label="Select Name" 
+        description="Choose a person from the list." 
+        required="true">
+    </field>
+
+    <!-- Textarea Field for Description -->
+    <field 
+        name="description" 
+        type="textarea" 
+        label="Description" 
+        description="Enter the person's description."
+        required="true"
+        rows="5" 
+        cols="40" />
+</fieldset>
+
+</form>
