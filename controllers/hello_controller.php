@@ -14,6 +14,7 @@ class HelloController extends BaseController
         $this->input->set('view', $viewName);
         parent::display($cachable, $urlparams);
     }
+
     public function edit()
     {
         $app = Factory::getApplication();
@@ -28,23 +29,50 @@ class HelloController extends BaseController
         parent::display();
     }
 
+    // public function delete(){
+    //     $app = Factory::getApplication();
+    //     Session::checkToken()or die("Token not valid");
+    //     $input=$app->input;
+    //     $cid=$input->get("id",array(),"array");
+    //     $model = $this->getModel('hello');
+    //     foreach($cid as $id){
+    //         if($model->delete($id)){
+    //                 $this->setMessage('Delete SuccessFully');
+    //         }
+    //         else{
+    //             Factory::getApplication()->enqueueMessage('Delete Failed','error');
+    //         }
+    //     }
+    //     $this->setRedirect(Route::_("index.php?option=com_hello&view=hellos",false));
+    // }
 
-    public function delete(){
+
+    public function delete()
+    {
         $app = Factory::getApplication();
-        Session::checkToken()or die("Token not valid");
-        $input=$app->input;
-        $cid=$input->get("id",array(),"array");
-        $model = $this->getModel('Hello');
-        foreach($cid as $id){
-            if($model->delete($id)){
-                    $this->setMessage('Delete SuccessFully');
+        Session::checkToken() or die("Token not valid");
+    
+        $input = $app->input;
+        $cid = $input->get("id", array(), "array"); // Fix the input name
+    
+        if (!empty($cid)) {
+            $model = $this->getModel('hello');
+    
+            if ($model->delete($cid)) {
+                $this->setMessage('Deleted Successfully');
+            } else {
+                $this->setMessage('Delete Failed', 'error');
             }
-            else{
-                Factory::getApplication()->enqueueMessage('Delete Failed','error');
-            }
+        } else {
+            $this->setMessage('No item selected', 'error');
         }
-        $this->setRedirect(Route::_("index.php?option=com_hello&c=hello",false));
+    
+        // ✅ Redirect to "hellos" view after delete
+        $this->setRedirect(Route::_("index.php?option=com_hello&c=hellos", false));
     }
+    
+
+
 
     public function save()
     {

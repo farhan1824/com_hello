@@ -4,13 +4,20 @@ defined('_JEXEC') or die('Restricted access');
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
-
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
 $listOrder = $this->escape($this->state->get("list.ordering"));
 $listDirn = $this->escape($this->state->get("list.direction"));
 $searchValue = $this->escape($this->state->get("filter.search"));
+$wa=Factory::getApplication()->getDocument()->getWebAssetManager();
+$wa->registerAndUseStyle("com_hello.style",Uri::root()."administrator\components\com_hello\media\css\style.css");
+$wa=Factory::getApplication()->getDocument()->getWebAssetManager();
+$wa->registerAndUseScript("com_hello.js",Uri::root()."administrator\components\com_hello\media\js\script.js");
 ?>
 
-<form action="<?php echo Route::_('index.php?option=com_hello&view=hellos'); ?>"
+
+
+<form action="<?php echo Route::_('index.php?option=com_hello&view=hello'); ?>"
       name="adminForm" id="adminForm" method="post" class="form-validate form-horizontal">
 
     <div id="j-main-container">
@@ -90,3 +97,4 @@ $searchValue = $this->escape($this->state->get("filter.search"));
         </div>
     </div>
 </form>
+<img src="<?php echo JUri::root() . 'administrator/components/com_hello/media/img/download (18).jpeg'; ?>" alt="" srcset="" height="120px">

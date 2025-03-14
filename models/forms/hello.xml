@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <form>
-<fieldset name="hello_form" label="Details">
-    <!-- Select Field for Name -->
+<fieldset name="hello_form">
     <field 
         name="id" 
         type="hidden" >
     </field>
+        <!-- Select Field for Name -->
     <field 
         name="name" 
         type="name" 

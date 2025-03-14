@@ -18,31 +18,57 @@ class HelloModelHello extends FormModel
         return $form;
     }
 
-    public function delete($id){
-        $db = Factory::getContainer()->get("DatabaseDriver");
-            try {
-                $query = $db->getQuery(true);
-                $query->delete('fb__facebook_friends')
-                      ->where($db->quoteName("id") . "=" . $db->quote($id));
+    // public function delete($id){
+    //     $db = Factory::getContainer()->get("DatabaseDriver");
+    //     $query = $db->getQuery(true);
+    //         try {
+    //             $query->delete('fb__facebook_friends')
+    //                   ->where($db->quoteName("id") . "=" . $db->quote($id));
         
-                $db->setQuery($query);
-                $db->execute();
-            } catch (Exception $e) {
-                Factory::getApplication()->enqueueMessage($e->getMessage(), "error");
-                return false;
-            }
-            return true;
+    //             $db->setQuery($query);
+    //             $db->execute();
+    //         } catch (Exception $e) {
+    //             Factory::getApplication()->enqueueMessage($e->getMessage(), "error");
+    //             return false;
+    //         }
+    //         return true;
+    // }
+
+    public function delete($ids)
+{
+    if (empty($ids) || !is_array($ids)) {
+        return false;
     }
+
+    $db = Factory::getContainer()->get("DatabaseDriver");
+
+    try {
+        // Convert array of IDs into a comma-separated string for SQL query
+        $ids = array_map('intval', $ids);
+        $query = $db->getQuery(true)
+            ->delete($db->quoteName('fb__facebook_friends'))
+            ->where($db->quoteName("id") . " IN (" . implode(',', $ids) . ")");
+
+        $db->setQuery($query);
+        $db->execute();
+
+        return true;
+    } catch (Exception $e) {
+        Factory::getApplication()->enqueueMessage($e->getMessage(), "error");
+        return false;
+    }
+}
 
 
 
     public function getItem()
     {
         $input = Factory::getApplication()->input; // Corrected input retrieval
-        $pk = $input->get("id", array(), "array");
-        if (is_array($pk)) {
-            $pk = (int) $pk[0];
-        }
+        // $pk = $input->get("id", array(), "array");
+        $pk = $this->getState($this->context . '.id');
+        // if (is_array($pk)) {
+        //     $pk = (int) $pk[0];
+        // }
         if ($pk == 0) {
             return false;
         }
@@ -69,6 +95,18 @@ class HelloModelHello extends FormModel
     {
         return $this->getItem();
     }
+    // public function loadFormData()
+    // {
+    //     return $this->getItem();
+    // }
+    public function loadFormData()
+{
+    $data = $this->getItem();
+    if ($data === false) {
+        $data = (object) []; // Or $data = [];
+    }
+    return $data;
+}
 
     public function save($data)
     {
