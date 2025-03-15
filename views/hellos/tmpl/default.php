@@ -105,4 +105,4 @@ $wa->registerAndUseScript("com_hello.js",Uri::root()."administrator\components\c
 
 
 
-<img src="<?php echo JUri::root() . 'administrator/components/com_hello/media/img/download (18).jpeg'; ?>" alt="" srcset="" height="120px">
+<img src="<?php echo JUri::root() . 'administrator/components/com_hello/media/img/my pic.jpg'; ?>" alt="" srcset="" height="120px">
