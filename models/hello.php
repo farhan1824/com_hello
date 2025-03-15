@@ -1,10 +1,13 @@
 <?php
 
+use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\MVC\Model\FormModel;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Table\Table;
 defined('_JEXEC') or die('Restricted access');
 
-class HelloModelHello extends FormModel
+// class HelloModelHello extends FormModel
+class HelloModelHello extends AdminModel
 {
     public function getForm($data = array(), $loadData = true)
     {
@@ -34,9 +37,41 @@ class HelloModelHello extends FormModel
     //         return true;
     // }
 
-    public function delete($ids)
+    public function getTable($type="Hello", $prefix="HelloTable",$config=array()){
+        return Table::getInstance($type,$prefix,$config);
+    }
+
+
+
+
+//     public function delete($ids)
+// {
+//     if (empty($ids) || !is_array($ids)) {
+//         return false;
+//     }
+
+//     $db = Factory::getContainer()->get("DatabaseDriver");
+
+//     try {
+//         // Convert array of IDs into a comma-separated string for SQL query
+//         $ids = array_map('intval', $ids);
+//         $query = $db->getQuery(true)
+//             ->delete($db->quoteName('fb__facebook_friends'))
+//             ->where($db->quoteName("id") . " IN (" . implode(',', $ids) . ")");
+
+//         $db->setQuery($query);
+//         $db->execute();
+
+//         return true;
+//     } catch (Exception $e) {
+//         Factory::getApplication()->enqueueMessage($e->getMessage(), "error");
+//         return false;
+//     }
+// }
+
+public function delete(&$pks)
 {
-    if (empty($ids) || !is_array($ids)) {
+    if (empty($pks) || !is_array($pks)) {
         return false;
     }
 
@@ -44,7 +79,7 @@ class HelloModelHello extends FormModel
 
     try {
         // Convert array of IDs into a comma-separated string for SQL query
-        $ids = array_map('intval', $ids);
+        $ids = array_map('intval', $pks);
         $query = $db->getQuery(true)
             ->delete($db->quoteName('fb__facebook_friends'))
             ->where($db->quoteName("id") . " IN (" . implode(',', $ids) . ")");
@@ -60,8 +95,8 @@ class HelloModelHello extends FormModel
 }
 
 
-
-    public function getItem()
+    // public function getItem()
+    public function getItem($pk = null)
     {
         $input = Factory::getApplication()->input; // Corrected input retrieval
         $pk = $input->get("id", array(), "array");

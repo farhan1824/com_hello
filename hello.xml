@@ -16,5 +16,9 @@
     </files>
     <administration>
         <menu>Hello Component</menu>
+        <submenu>
+        <menu link="option=com_hello&amp;view=hellos">Hellos</menu>
+        <menu link="option=com_hello&amp;view=hello">Hello</menu>
+        </submenu>
     </administration>
 </extension>

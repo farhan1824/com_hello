@@ -2,17 +2,44 @@
 defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\MVC\Controller\AdminController;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Factory;
 
-class HelloController extends BaseController
+// class HelloController extends BaseController
+class HelloController extends AdminController
 {
     public function display($cachable = false, $urlparams = array())
     {
-        $viewName = $this->input->getCmd('view', 'hellos');
-        $this->input->set('view', $viewName);
-        parent::display($cachable, $urlparams);
+/*
+here i was showing the default view model of hellos
+*/
+
+        // $viewName = $this->input->getCmd('view', 'hellos');
+        // $this->input->set('view', $viewName);
+        // parent::display($cachable, $urlparams);
+/*
+
+the cause of this change is we are adding a table task and it is gonnna dictate which view and model are to show
+
+*/
+
+       // Get the task from the request
+    $task = $this->input->getCmd('task', '');
+    
+    // Check if the task is add or edit, otherwise use the default view
+    if ($task == "add" || $task == "edit") {
+        $viewName = "hello"; // Single item view
+    } else {
+        $viewName = $this->input->getCmd('view', 'hellos'); // Default to list view
+    }
+
+    // Set the view parameter
+    $this->input->set('view', $viewName);
+
+    // Call parent display method
+    parent::display($cachable, $urlparams);
     }
 
     public function edit()
