@@ -101,10 +101,14 @@ public function delete(&$pks)
         $input = Factory::getApplication()->input; // Corrected input retrieval
         $pk = $input->get("id", array(), "array");
         // $pk = $this->getState($this->context . '.id');
-        if (is_array($pk)) {
+        if (is_array($pk) && isset($pk[0])) {
             $pk = (int) $pk[0];
+        } else {
+            $pk = 0;
         }
+        
         if ($pk == 0) {
+            // Handle the case where $pk is 0, if necessary
             return false;
         }
         $db = Factory::getContainer()->get("DatabaseDriver");

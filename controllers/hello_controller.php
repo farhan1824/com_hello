@@ -99,7 +99,11 @@ the cause of this change is we are adding a table task and it is gonnna dictate 
     }
     
 
-
+    public function cancel()
+    {
+        // Redirect back to the list view after cancel
+        $this->setRedirect(Route::_('index.php?option=com_hello&view=hellos'));
+    }
 
     public function save()
     {

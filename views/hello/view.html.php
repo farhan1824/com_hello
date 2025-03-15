@@ -16,6 +16,8 @@ class HelloViewHello extends BaseHtmlView{
     function addToolbar()
     {
         ToolbarHelper::save();
-        ToolbarHelper::cancel();
+       // In your view or controller's display method (for example, in the edit or add view)
+        ToolbarHelper::cancel('cancel', 'Cancel');
+
     }
 }
