@@ -14,6 +14,23 @@
         <filename>hello.php</filename>
         <!-- <filename>index.html</filename> -->
     </files>
+    <install>
+    <sql>
+    <file charset="utf8" driver="mysql">installation/sql/install.sql</file>
+    
+    </sql>
+    </install>
+    <uninstall>
+    <sql>
+    <file charset="utf8" driver="mysql">installation/sql/uninstall.sql</file>
+    
+    </sql>
+    </uninstall>
+<update>
+<schemas>
+    <schemaspath type="mysql">installation/updates/</schemaspath>
+</schemas>
+</update>
     <administration>
         <menu>Hello Component</menu>
         <submenu>
